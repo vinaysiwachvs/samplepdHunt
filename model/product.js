@@ -1,141 +1,55 @@
 const mongoose = require("mongoose");
 
-const CommentSchema = new mongoose.Schema({
-    createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    },
-    desp: {
+const productSchema = new mongoose.Schema({
+  name: {
     type: String,
-    minlength: 1,
+    trim: true,
+    required: true,
     maxlength: 200,
+  },
+  description: {
+    type: String,
     trim: true,
-    validate: {
-        validator: function (v) {
-        return /^[^<>#$\\/]*[\s,.-]*[^<>#$\\/]*$/.test(v);
-        },
-        message: (props) =>
-        `${props.value} contains special characters, only alphanumeric characters and spaces are allowed!`,
-    },
-    },
-    createdOn: {
-    type: Date,
-    default: Date.now(),
-    immutable: true,
-    },
-    updatedOn: {
-    type: Date,
-    default: Date.now(),
-    },
-});
-
-const ProductSchema = new mongoose.Schema({
-    name: {
+    required: true,
+    maxlength: 2000,
+  },
+  icon: {
     type: String,
     required: true,
-    trim: true,
-    unique: true,
-    minlength: 1,
-    validate: {
-        validator: function (v) {
-        return /^[^<>#$\\/]*[\s,.-]*[^<>#$\\/]*$/.test(v);
-        },
-        message: (props) =>
-        `${props.value} contains special characters, only alphanumeric characters and spaces are allowed!`,
-    },
-    },
-
-    url: {
+  },
+  url: {
     type: String,
     required: true,
-    trim: true,
-    unique: true,
-    match: /^(http|https):\/\/[^ "]+$/,
-    },
-
-    icon: {
+  },
+  shortDesc: {
     type: String,
     required: true,
-    trim: true,
-    match: /^(http|https):\/\/[^ "]+$/,
-    },
-
-    shortDescription: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 1,
-    maxlength: 100,
-    validate: {
-        validator: function (v) {
-        return /^[^<>#$\\/]*[\s,.-]*[^<>#$\\/]*$/.test(v);
-        },
-        message: (props) =>
-        `${props.value} contains special characters, only alphanumeric characters and spaces are allowed!`,
-    },
-    },
-
-    longDescription: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 1,
-    maxlength: 1000,
-    validate: {
-        validator: function (v) {
-        return /^[^<>#$\\/]*[\s,.-]*[^<>#$\\/]*$/.test(v);
-        },
-        message: (props) =>
-        `${props.value} contains special characters, only alphanumeric characters and spaces are allowed!`,
-    },
-    },
-
-    tags: [
-    {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Tag",
-    },
-    ],
-
-    comments: [CommentSchema],
-
-    images: [String],
-
-    upvoters: [
-    {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        },
-    ],
-
-    createdOn: {
-    type: Date,
-    default: Date.now(),
-    immutable: true,
-    },
-
-    createdBy: {
+    maxlength: 400,
+  },
+  images: {
+    type: Array,
+    default: [],
+  },
+  createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
     immutable: true,
-    },
-
-    updatedOn: {
+  },
+  createdOn: {
     type: Date,
     default: Date.now(),
-    },
-
-    updatedBy: {
+    immutable: true,
+  },
+  updatedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    },
+    required: true,
+  },
+  updatedOn: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
-const Product = mongoose.model("Product", ProductSchema);
-const Comment = mongoose.model("Comment", CommentSchema);
-
-module.exports = {
-    Product: Product,
-    Comment: Comment,
-};
+module.exports = mongoose.model("Product", productSchema);
