@@ -1,25 +1,33 @@
 
-GET http://localhost:3000/
+GET https://samplepdhunt-production.up.railway.app/
 ###
 
-GET http://localhost:3000/api/products
+GET https://samplepdhunt-production.up.railway.app/api/products
 
 
 ###
-
-
-GET http://localhost:3000/api/v1/notes
-
-###
-
-POST http://localhost:3000/api/user
-content-type: application/json
+POST https://samplepdhunt-production.up.railway.app/api/user
 
 {
-    "name": "Vinay",
-    "email":"Vinay@gmail.com",
-    "password": "Vinay@123"
+    "name":"Deepanshu",
+    "email":"monty@gmail.com",
+    "password": "monty@123"
+}
+###
 
+POST https://samplepdhunt-production.up.railway.app/api/user
+
+{
+    "name":"Deepanshu",
+    "email":"monty@gmail.com",
+    "password": "monty@123"
 }
 
 
+###
+POST https://samplepdhunt-production.up.railway.app/api/auth/login
+
+{
+    "email":"monty@gmail.com",
+    "password": "monty@123"
+}

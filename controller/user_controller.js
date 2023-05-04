@@ -1,7 +1,7 @@
 const User = require("../model/user");
 const userService = require("../service/user_service");
 
-const createUser = async (req, res) => {
+exports.createUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
     let user = new User({ name, email, password });
@@ -15,4 +15,20 @@ const createUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser };
+exports.getUserByEmail = async (req, res) => {
+  try {
+    const { email, token } = req.body;
+    if (!token || token !== "123456") {
+      throw new Error("Access denied");
+    } else {
+      const user = await userService.getUserByEmail(email);
+      console.log("user " + user);
+      if (!user) {
+        throw new Error("User not found");
+      }
+      res.status(200).send(user);
+    }
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+};
