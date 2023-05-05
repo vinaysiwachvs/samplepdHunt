@@ -29,6 +29,7 @@ exports.getUserByEmail = async (req, res) => {
       res.status(200).send(user);
     }
   } catch (error) {
+    // console.log("error in user post ", error);
     res.status(400).send({ message: error.message });
   }
 };
