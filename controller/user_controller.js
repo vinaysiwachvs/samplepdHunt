@@ -18,8 +18,8 @@ exports.createUser = async (req, res) => {
 exports.getUserByEmail = async (req, res) => {
   try {
     const { email, token } = req.body;
-    if (!token || token !== "123456") {
-      throw new Error("Access denied");
+    if (!email) {
+      throw new Error("Email is mandatory");
     } else {
       const user = await userService.getUserByEmail(email);
       console.log("user " + user);

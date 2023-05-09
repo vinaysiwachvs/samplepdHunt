@@ -1,19 +1,15 @@
 const { response } = require("express");
 const User = require("../model/user");
-const userService = require("../service/user_service");
+const authService = require("../service/auth_service");
 const bcrypt = require("bcrypt");
 
-exports.registerUser = async (req, res) => {
+exports.signup = async (req, res) => {
   console.log("In POST register User ");
   try {
     const { name, email, password } = req.body;
-    console.log("In POST register User " + name + " " + email + " " + password);
-    let user = new User({ name, email, password });
-
-    console.log("In POST user " + user);
-    await userService.createUser(user);
-
-    res.status(201).send({ message: "User created successfully" });
+    const _id = await authService.signup(name, email, password);
+    // console.log("user " + user);
+    res.status(201).send({ id: _id });
   } catch (error) {
     console.log("error in user post ", error);
     res.status(400).send({ message: error.message });
@@ -21,23 +17,45 @@ exports.registerUser = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  console.log("In POST register User ");
+  console.log("In POST login User ");
   try {
     const { email, password: inputPassword } = req.body;
     console.log("In POST login User ", email, inputPassword);
-    const user = await userService.getUserByEmail(email);
-    console.log("user " + user);
-    if (!user) {
-      throw new Error("User not found");
-    }
-    const isMatch = await bcrypt.compare(inputPassword, user.password);
-    if (!isMatch) {
-      throw new Error("Invalid credentials");
-    }
 
-    // const token = await userService.generateAuthToken(user);
+    const token = await authService.login(email, inputPassword);
 
-    res.status(201).send({ message: "User logged in successfully" });
+    res.status(200).send({ token: token });
+  } catch (error) {
+    console.log("error in user post ", error);
+    res.status(400).send({ message: error.message });
+  }
+};
+
+exports.logout = async (req, res) => {
+  try {
+    let loggedInUser = req.loggedInUser;
+
+    await authService.logout(loggedInUser._id);
+    res.status(200).send({ message: "Logged out successfully" });
+  } catch (error) {
+    console.log("error in user post ", error);
+    res.status(400).send({ message: error.message });
+  }
+};
+
+exports.verifyToken = async (req, res, next) => {
+  try {
+    console.log("In verifyToken ", req.headers);
+    const authHeader = req.headers["authorization"];
+    if (!authHeader) throw new Error({ message: "Access Denied. Please send Token" });
+
+    const token = authHeader.split(" ")[1];
+    if (!token) throw new Error({ message: "Access Denied. Please send Token" });
+    console.log("token " + token);
+
+    const user = await authService.verifyToken(token);
+    req.loggedInUser = user;
+    next();
   } catch (error) {
     console.log("error in user post ", error);
     res.status(400).send({ message: error.message });
