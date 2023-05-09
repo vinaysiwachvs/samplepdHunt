@@ -1,33 +1,66 @@
 
-GET http://localhost:3000/
+GET http://localhost:3001/
 ###
 
-GET http://localhost:3000/api/products
+GET http://localhost:3001/api/products
 
 
 ###
-POST http://localhost:3000/api/user
+
+
+GET http://localhost:3001/api/v1/notes
+
+###
+
+POST http://localhost:3001/api/user
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4ZWIxZjVhM2M5ODAzY2ZlMDgxYjYiLCJuYW1lIjoiQW5tb2wyIiwiaWF0IjoxNjgzNTUzMDI1LCJleHAiOjE2ODM1NTY2MjV9.tLlcWEzkOB0No7zqzPCOhMZc8iYgi7zvXMPX2kvQIzY
 
 {
-    "name":"Deepanshu 2",
-    "email":"monty2@gmail.com",
-    "password": "monty@123",
+    "email":"anmol@gmail.com"
+    
+
 }
 ###
 
-POST http://localhost:3000/api/user
+POST https://pdhuntall1-production-8015.up.railway.app/api/user
+content-type: application/json
 
 {
-    "name":"Deepanshu",
-    "email":"monty@gmail.com",
-    "password": "monty@123"
+    "name": "DB2111",
+    "email":"db1112@gmail.com",
+    "password": "123456"
+
+}
+
+
+
+
+###
+POST http://localhost:3001/api/auth/signup
+content-type: application/json
+
+{
+    "name": "Anmol3",
+    "email":"anmol3@gmail.com",
+    "password": "password@123"
+
 }
 
 
 ###
-POST http://localhost:3000/api/auth/login
+POST http://localhost:3001/api/auth/login
+content-type: application/json
 
 {
-    "email":"monty@gmail.com",
-    "password": "monty@123"
+    
+    "email":"anmol2@gmail.com",
+    "password": "password@123"
+
 }
+
+
+###
+POST http://localhost:3001/api/auth/logout
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4ZWIxZjVhM2M5ODAzY2ZlMDgxYjYiLCJuYW1lIjoiQW5tb2wyIiwiaWF0IjoxNjgzNTUzMDI1LCJleHAiOjE2ODM1NTY2MjV9.tLlcWEzkOB0No7zqzPCOhMZc8iYgi7zvXMPX2kvQIzY
