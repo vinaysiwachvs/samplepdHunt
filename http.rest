@@ -1,66 +1,68 @@
 
-GET http://localhost:3001/
-###
-
-GET http://localhost:3001/api/products
-
-
-###
-
-
-GET http://localhost:3001/api/v1/notes
-
-###
-
-POST http://localhost:3001/api/user
+POST http://localhost:3000/api/auth/signup
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4ZWIxZjVhM2M5ODAzY2ZlMDgxYjYiLCJuYW1lIjoiQW5tb2wyIiwiaWF0IjoxNjgzNTUzMDI1LCJleHAiOjE2ODM1NTY2MjV9.tLlcWEzkOB0No7zqzPCOhMZc8iYgi7zvXMPX2kvQIzY
 
-{
-    "email":"anmol@gmail.com"
-    
-
+{   
+    "name":"Vinay2",
+    "email":"Vinay2@123",
+    "password":"Vinay@123",
+    "number": 9876274312
 }
+
+###
+POST http://localhost:3000/api/auth/signup/verifyOtp
+content-type: application/json
+
+{   
+
+    "otp": 143102
+}
+
 ###
 
-POST https://pdhuntall1-production-8015.up.railway.app/api/user
+POST http://localhost:3000/api/auth/generateOtp
 content-type: application/json
 
 {
-    "name": "DB2111",
-    "email":"db1112@gmail.com",
-    "password": "123456"
-
+    "email": "Vinay@gmail.com"
 }
 
-
-
-
 ###
-POST http://localhost:3001/api/auth/signup
+POST http://localhost:3000/api/auth/login
 content-type: application/json
 
 {
-    "name": "Anmol3",
-    "email":"anmol3@gmail.com",
-    "password": "password@123"
-
+    "email":"Vinay@gmail.com",
+    "password":"Vinay@123",
 }
-
-
 ###
-POST http://localhost:3001/api/auth/login
+
+POST http://localhost:3000/api/auth/logout
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDViMzQxOTU4ZWI0MDcxOTliODllODUiLCJuYW1lIjoiVmluYXkiLCJlbWFpbCI6IlZpbmF5QGdtYWlsLmNvbSIsImlhdCI6MTY4MzY5ODg0MiwiZXhwIjoxNjgzNzg1MjQyfQ.DhGm_Xwm8UVJoOaRclLkXm5tTCQXmeAgmoCMQflEaWI
+
+
+
+// Tags
+###
+POST http://localhost:3000/api/tag
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDViMzQxOTU4ZWI0MDcxOTliODllODUiLCJuYW1lIjoiVmluYXkiLCJlbWFpbCI6IlZpbmF5QGdtYWlsLmNvbSIsImlhdCI6MTY4MzY5ODg0MiwiZXhwIjoxNjgzNzg1MjQyfQ.DhGm_Xwm8UVJoOaRclLkXm5tTCQXmeAgmoCMQflEaWI
 
 {
-    
-    "email":"anmol2@gmail.com",
-    "password": "password@123"
+    "name":"Machine Learning",
+    "description":"This is a tag of ML"
 
 }
 
+###
+GET http://localhost:3000/api/tag
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDViMzQxOTU4ZWI0MDcxOTliODllODUiLCJuYW1lIjoiVmluYXkiLCJlbWFpbCI6IlZpbmF5QGdtYWlsLmNvbSIsImlhdCI6MTY4MzY5ODg0MiwiZXhwIjoxNjgzNzg1MjQyfQ.DhGm_Xwm8UVJoOaRclLkXm5tTCQXmeAgmoCMQflEaWI
+
+
 
 ###
-POST http://localhost:3001/api/auth/logout
+GET http://localhost:3000/api/tag/645b355aeafa3b4422ab6249
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4ZWIxZjVhM2M5ODAzY2ZlMDgxYjYiLCJuYW1lIjoiQW5tb2wyIiwiaWF0IjoxNjgzNTUzMDI1LCJleHAiOjE2ODM1NTY2MjV9.tLlcWEzkOB0No7zqzPCOhMZc8iYgi7zvXMPX2kvQIzY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDViMzQxOTU4ZWI0MDcxOTliODllODUiLCJuYW1lIjoiVmluYXkiLCJlbWFpbCI6IlZpbmF5QGdtYWlsLmNvbSIsImlhdCI6MTY4MzY5ODg0MiwiZXhwIjoxNjgzNzg1MjQyfQ.DhGm_Xwm8UVJoOaRclLkXm5tTCQXmeAgmoCMQflEaWI

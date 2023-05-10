@@ -3,7 +3,7 @@ const User = require("../model/user");
 
 exports.createUser = async (user) => {
   await user.save();
-  console.log("User created successfully 1", user);
+  console.log("User created successfully", user);
 };
 
 exports.getUserByEmail = async (email) => {

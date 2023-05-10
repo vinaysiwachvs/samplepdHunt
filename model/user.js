@@ -13,6 +13,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: true,
+    select: false,
+    maxlength: 100,
+    minlength: 6,
   },
   email: {
     type: String,
@@ -24,12 +27,15 @@ const userSchema = new mongoose.Schema({
   token: {
     type: String,
   },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 userSchema.pre("save", async function (next) {
   try {
     console.log("Pre Save Hook");
-
     const encryptedPassword = await hashPassword(this.password);
     this.password = encryptedPassword;
     next();

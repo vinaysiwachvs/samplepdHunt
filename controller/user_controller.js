@@ -17,7 +17,7 @@ exports.createUser = async (req, res) => {
 
 exports.getUserByEmail = async (req, res) => {
   try {
-    const { email, token } = req.body;
+    const { email } = req.body;
     if (!email) {
       throw new Error("Email is mandatory");
     } else {
@@ -29,7 +29,6 @@ exports.getUserByEmail = async (req, res) => {
       res.status(200).send(user);
     }
   } catch (error) {
-    // console.log("error in user post ", error);
     res.status(400).send({ message: error.message });
   }
 };
