@@ -1,10 +1,9 @@
-const { response } = require("express");
+
 const User = require("../model/user");
 const Otp = require("../model/otp");
 const otpGenerator = require("otp-generator");
 const authService = require("../service/auth_service");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 exports.signup = async(req, res) => {
     console.log("In POST signup User ");
@@ -41,18 +40,18 @@ exports.signup = async(req, res) => {
 };
 
 exports.login = async (req, res) => {
-  console.log("In POST login User ");
-  try {
+console.log("In POST login User ");
+try {
     const { email, password: inputPassword } = req.body;
     // console.log("In POST login User ", email, inputPassword);
 
     const token = await authService.login(email, inputPassword);
 
     res.status(200).send({ token: token });
-  } catch (error) {
+} catch (error) {
     console.log("error in user post ", error);
     res.status(400).send({ message: error.message });
-  }
+    }
 };
 
 exports.logout = async(req, res) => {

@@ -1,8 +1,8 @@
-class AuthError extends Error {
+class ValidationError extends Error {
     constructor(message) {
         super(message);
         this.message = message;
-        this.status = 401;
+        this.status = 400;
     }
 
     toString() {
@@ -10,4 +10,4 @@ class AuthError extends Error {
     }
 };
 
-module.exports = AuthError;
+module.exports = ValidationError;

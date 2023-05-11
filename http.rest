@@ -1,14 +1,18 @@
 @baseUrl = http://localhost:3000/api
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDViN2EzY2ExNDA0ZGQ1MjZmNGFjZTkiLCJuYW1lIjoiVmluYXkiLCJlbWFpbCI6IlZpbmF5QGdtYWlsLmNvbSIsImlhdCI6MTY4Mzc4MjExMiwiZXhwIjoxNjgzODY4NTEyfQ.0jFjeyOoHGEU43RLN5e4rSiJpXHaIJ-1Dg4B3rXDi7A
-@token1 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVjN2MxYzY5NzljODFkMWZlZWRlNGUiLCJuYW1lIjoiUEciLCJlbWFpbCI6IlBHQGdtYWlsLmNvbSIsImlhdCI6MTY4Mzc4Mjc1NiwiZXhwIjoxNjgzODY5MTU2fQ.LFYzSKVwLGB6BV1uSPldvuOXFQ5d7qPke-poFgYg5Oc
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVjODc1ODlkMTVjNzBmODZhN2FkZGYiLCJuYW1lIjoiQW5uaSIsImVtYWlsIjoiQW5uaUBnbWFpbC5jb20iLCJpYXQiOjE2ODM3ODU5NjEsImV4cCI6MTY4Mzg3MjM2MX0.K36CGsdGBdl6LuZ8ncdVCYsr5PNg6UUegwT0sAfgbb8
+@token1 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVjODk2Y2JhYWY3MzRkOGU0YjI1NzciLCJuYW1lIjoiVmluYXkiLCJlbWFpbCI6IlZpbmF5QGdtYWlsLmNvbSIsImlhdCI6MTY4Mzc4NjE4MSwiZXhwIjoxNjgzODcyNTgxfQ.h6K1iPWTmjwv2_MVpCE4-hSGosc1sc_eiwGaNgxHDos
+@token2 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVjOGE0YmJhYWY3MzRkOGU0YjI1OGEiLCJuYW1lIjoibW9udHkiLCJlbWFpbCI6Im1vbnR5QGdtYWlsLmNvbSIsImlhdCI6MTY4Mzc4ODEwMSwiZXhwIjoxNjgzODc0NTAxfQ.EuyOHVCo2k6rhJG6nyFoMXiD_LaiOG-YDKAUl3YEU1w
+
+
+
 POST {{baseUrl}}/auth/signup
 content-type: application/json
 
 {   
-    "name":"Anni",
-    "email":"Anni@gmail.com",
+    "name":"monty",
+    "email":"monty@gmail.com",
     "password":"password@123",
-    "number": 9556651903
+    "number": 9876543212
 }
 
 ###
@@ -16,25 +20,17 @@ POST {{baseUrl}}/auth/verify
 content-type: application/json
 
 {   
-    "number": 9556651903,
-    "otp": "832884"
+    "number": 9876543212,
+    "otp": "171998"
 }
 
-###
-
-POST {{baseUrl}}/auth/generateOtp
-content-type: application/json
-
-{
-    "email": "Vinay@gmail.com"
-}
 
 ###
 POST {{baseUrl}}/auth/login
 content-type: application/json
 
 {
-    "email":"PG@gmail.com",
+    "email":"monty@gmail.com",
     "password":"password@123"
 }
 ###
@@ -47,11 +43,11 @@ Authorization: Bearer {{token1}}
 ###
 POST {{baseUrl}}/tag
 content-type: application/json
-Authorization: Bearer {{token1}}
+Authorization: Bearer {{token2}}
 
 {
-    "name":"Open Source",
-    "description": "ABC"
+    "name":"Tag by Monty",
+    "description": "Monty's Tag"
 }
 
 ###
@@ -59,12 +55,24 @@ GET {{baseUrl}}/tag
 content-type: application/json
 Authorization: Bearer {{token}}
 
-{
-    "name":"Open Source",
-    "description": "ABC"
-}
+{}
 
 ###
-GET {{baseUrl}}/tag/645c7a856979c81d1feede43
+GET {{baseUrl}}/tag/645c8adebaaf734d8e4b2598
+content-type: application/json
+Authorization: Bearer {{token2}}
+
+
+###
+POST  {{baseUrl}}/product
 content-type: application/json
 Authorization: Bearer {{token}}
+
+{
+    "name" : "Product 1",
+    "description": "Description of 1",
+    "icon": "icon of 1",
+    "url" : "url of 1 ",
+    "shortDesc" :"shortDesc of 1",
+    "images":[]
+}
