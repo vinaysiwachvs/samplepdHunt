@@ -32,10 +32,9 @@ exports.signup = async(name, email, password, number, otp) => {
     return user._id;
 };
 
-exports.login = async(email, inputPassword) => {
+exports.login = async (email, inputPassword) => {
     console.log("In Auth login  ");
-
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email, isActive: true }).select("+password");
     console.log("user " + user);
     if (!user) {
         throw new Error("User not found");
@@ -44,9 +43,9 @@ exports.login = async(email, inputPassword) => {
     if (!isMatch) {
         throw new Error("Invalid credentials");
     }
-    const token = jwt.sign({ _id: user._id, name: user.name },
-        process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" }
-    );
+    const token = jwt.sign({ _id: user._id, name: user.name, email: user.email }, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: "1d",
+    });
     console.log("token " + token);
 
     await User.findOneAndUpdate({ _id: user._id }, { token: token });
@@ -87,6 +86,6 @@ exports.verify = async(number, otp) => {
         throw new Error("Invalid OTP");
     }
 
-    await User.updateOne({ number }, { isVerified: true });
+    await User.updateOne({ number }, { isActive: true });
     await Otp.deleteOne({ number });
 };

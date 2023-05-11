@@ -50,6 +50,33 @@ const productSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  tag:[{
+    id:{
+      type:String,
+      required:true
+    },
+    name:{
+      type:String,
+      required:true
+    }
+    }
+  ],
+  upvotes:{
+    type:Number,
+    default:0
+  },
+  comment:{
+    id:{
+      type:String,
+      required:true
+    },
+    text:{
+      type:String,
+      required:true,
+      maxlength:2000,
+      
+    }
+  }
 });
 
 module.exports = mongoose.model("Product", productSchema);

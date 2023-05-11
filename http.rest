@@ -1,26 +1,28 @@
-
-POST http://localhost:3000/api/auth/signup
+@baseUrl = http://localhost:3000/api
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDViN2EzY2ExNDA0ZGQ1MjZmNGFjZTkiLCJuYW1lIjoiVmluYXkiLCJlbWFpbCI6IlZpbmF5QGdtYWlsLmNvbSIsImlhdCI6MTY4Mzc4MjExMiwiZXhwIjoxNjgzODY4NTEyfQ.0jFjeyOoHGEU43RLN5e4rSiJpXHaIJ-1Dg4B3rXDi7A
+@token1 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVjN2MxYzY5NzljODFkMWZlZWRlNGUiLCJuYW1lIjoiUEciLCJlbWFpbCI6IlBHQGdtYWlsLmNvbSIsImlhdCI6MTY4Mzc4Mjc1NiwiZXhwIjoxNjgzODY5MTU2fQ.LFYzSKVwLGB6BV1uSPldvuOXFQ5d7qPke-poFgYg5Oc
+POST {{baseUrl}}/auth/signup
 content-type: application/json
 
 {   
-    "name":"Vinay2",
-    "email":"Vinay2@123",
-    "password":"Vinay@123",
-    "number": 9876274312
+    "name":"Anni",
+    "email":"Anni@gmail.com",
+    "password":"password@123",
+    "number": 9556651903
 }
 
 ###
-POST http://localhost:3000/api/auth/signup/verifyOtp
+POST {{baseUrl}}/auth/verify
 content-type: application/json
 
 {   
-
-    "otp": 143102
+    "number": 9556651903,
+    "otp": "832884"
 }
 
 ###
 
-POST http://localhost:3000/api/auth/generateOtp
+POST {{baseUrl}}/auth/generateOtp
 content-type: application/json
 
 {
@@ -28,41 +30,41 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:3000/api/auth/login
+POST {{baseUrl}}/auth/login
 content-type: application/json
 
 {
-    "email":"Vinay@gmail.com",
-    "password":"Vinay@123",
+    "email":"PG@gmail.com",
+    "password":"password@123"
 }
 ###
 
-POST http://localhost:3000/api/auth/logout
+POST {{baseUrl}}/auth/logout
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDViMzQxOTU4ZWI0MDcxOTliODllODUiLCJuYW1lIjoiVmluYXkiLCJlbWFpbCI6IlZpbmF5QGdtYWlsLmNvbSIsImlhdCI6MTY4MzY5ODg0MiwiZXhwIjoxNjgzNzg1MjQyfQ.DhGm_Xwm8UVJoOaRclLkXm5tTCQXmeAgmoCMQflEaWI
-
-
+Authorization: Bearer {{token1}}
 
 // Tags
 ###
-POST http://localhost:3000/api/tag
+POST {{baseUrl}}/tag
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDViMzQxOTU4ZWI0MDcxOTliODllODUiLCJuYW1lIjoiVmluYXkiLCJlbWFpbCI6IlZpbmF5QGdtYWlsLmNvbSIsImlhdCI6MTY4MzY5ODg0MiwiZXhwIjoxNjgzNzg1MjQyfQ.DhGm_Xwm8UVJoOaRclLkXm5tTCQXmeAgmoCMQflEaWI
+Authorization: Bearer {{token1}}
 
 {
-    "name":"Machine Learning",
-    "description":"This is a tag of ML"
-
+    "name":"Open Source",
+    "description": "ABC"
 }
 
 ###
-GET http://localhost:3000/api/tag
+GET {{baseUrl}}/tag
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDViMzQxOTU4ZWI0MDcxOTliODllODUiLCJuYW1lIjoiVmluYXkiLCJlbWFpbCI6IlZpbmF5QGdtYWlsLmNvbSIsImlhdCI6MTY4MzY5ODg0MiwiZXhwIjoxNjgzNzg1MjQyfQ.DhGm_Xwm8UVJoOaRclLkXm5tTCQXmeAgmoCMQflEaWI
+Authorization: Bearer {{token}}
 
-
+{
+    "name":"Open Source",
+    "description": "ABC"
+}
 
 ###
-GET http://localhost:3000/api/tag/645b355aeafa3b4422ab6249
+GET {{baseUrl}}/tag/645c7a856979c81d1feede43
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDViMzQxOTU4ZWI0MDcxOTliODllODUiLCJuYW1lIjoiVmluYXkiLCJlbWFpbCI6IlZpbmF5QGdtYWlsLmNvbSIsImlhdCI6MTY4MzY5ODg0MiwiZXhwIjoxNjgzNzg1MjQyfQ.DhGm_Xwm8UVJoOaRclLkXm5tTCQXmeAgmoCMQflEaWI
+Authorization: Bearer {{token}}
