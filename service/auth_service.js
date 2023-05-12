@@ -2,7 +2,6 @@ const User = require("../model/user");
 const Otp = require("../model/otp");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const otpGenerator = require("otp-generator");
 
 exports.signup = async(name, email, password, number, otp) => {
     console.log("In Auth SignUp  ");
